@@ -45,7 +45,7 @@
 
         .section h2 {
             font-size: 2rem;
-            border-left: 6px solid #⃣#⃣ メインカラー例：#2c7a7b #⃣#⃣;
+            border-left: 6px solid #2c7a7b;
             padding-left: 12px;
             margin-bottom: 30px;
         }
@@ -57,7 +57,7 @@
         }
 
         .footer {
-            background: #⃣#⃣ フッター背景色例：#222 #⃣#⃣;
+            background:#222;
             color: #fff;
             text-align: center;
             padding: 20px;
@@ -66,7 +66,7 @@
         a.button {
             display: inline-block;
             padding: 12px 24px;
-            background: #⃣#⃣ ボタン色例：#2c7a7b #⃣#⃣;
+            background:#2c7a7b;
             color: #fff;
             text-decoration: none;
             border-radius: 6px;
@@ -79,6 +79,29 @@
 
     <!-- Hero -->
     <section class="hero">
+
+	<div id="slider" style="width:100%; overflow:hidden; position:relative;">
+        <img id="slideImage" 
+             src="/assets/slide/1.jpg" 
+             style="width:100%; display:block;">
+    </div>
+
+    <script>
+        const totalImages = 5; // ← 枚数を指定
+        const basePath = "/assets/slide/";
+        const extension = ".jpg";
+        let current = 1;
+
+        function changeSlide() {
+            current++;
+            if (current > totalImages) current = 1;
+            document.getElementById("slideImage").src = 
+                basePath + current + extension;
+        }
+
+        setInterval(changeSlide, 3000);
+    </script>
+
         <h1>地域資源を未来へつなぐ</h1>
         <p>遊休施設・空き家・民泊の新しい管理モデル</p>
         <a href="#contact" class="button">お問い合わせ</a>
