@@ -32,34 +32,39 @@
         /* 横に並べる（画像5枚の場合） */
         .slides {
             display: flex;
-            width: 400%; /* ←画像枚数 × 100% */
-            animation: slide 16s infinite;
+            width: 500vw; /* ←画像枚数 × 100% */
+            animation: slide 32s infinite;
         }
 
-        /* トリミングしない・縦横比維持・自動調整 */
-        .slides img {
-            width: 100%;
-            height: auto;
-            object-fit: contain; /* ←トリミング防止 */
-            background: #000; /* 余白色（任意で変更可） */
-        }
+       /* トリミングしない・縦横比維持・自動調整・薄くする */
+	.slides img {
+	    width: 100vw;
+	    height: auto;
+	    object-fit: contain;
+	    background: #000;
+	    filter: brightness(100%); /* ←画像を薄く（暗く） */
+	}
 
-        /* 横スライドアニメーション */
-        @keyframes slide {
-            0%   { transform: translateX(0%); }
-            20%  { transform: translateX(0%); }
 
-            25%  { transform: translateX(-100%); }
-            45%  { transform: translateX(-100%); }
+/* 5枚用の横スライドアニメーション */
+@keyframes slide {
 
-            50%  { transform: translateX(-200%); }
-            70%  { transform: translateX(-200%); }
+    0%   { transform: translateX(0); }
+    10%  { transform: translateX(0); }
 
-            75%  { transform: translateX(-300%); }
-            95%  { transform: translateX(-300%); }
+    20%  { transform: translateX(-100vw); }
+    30%  { transform: translateX(-100vw); }
 
-            100% { transform: translateX(0%); }
-        }
+    40%  { transform: translateX(-200vw); }
+    50%  { transform: translateX(-200vw); }
+
+    60%  { transform: translateX(-300vw); }
+    70%  { transform: translateX(-300vw); }
+
+    80%  { transform: translateX(-400vw); }
+    90%  { transform: translateX(-400vw); }
+}
+
 
         /* Hero テキストをスライドの上に重ねる */
         .hero-text {
@@ -131,7 +136,7 @@
                 <img src="/-organization-.github.io/assets/slide/3.jpg">
                 <img src="/-organization-.github.io/assets/slide/4.jpg">
 		<img src="/-organization-.github.io/assets/slide/5.jpg">
-            </div>
+		</div>
         </div>
 
         <div class="hero-text">
