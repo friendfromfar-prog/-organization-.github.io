@@ -13,32 +13,84 @@
             color: #333;
         }
 
-        /* Hero セクション */
+        /* ============================
+           Hero セクション（スライド統合）
+        ============================ */
         .hero {
-            height: 100vh;
-            background-image: url("#⃣#⃣ /assets/img/hero.jpg を指定 #⃣#⃣");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            position: relative;
             text-align: center;
             color: #fff;
         }
 
-        .hero h1 {
+        /* スライダー全体 */
+        .slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 横に並べる（画像5枚の場合） */
+        .slides {
+            display: flex;
+            width: 400%; /* ←画像枚数 × 100% */
+            animation: slide 16s infinite;
+        }
+
+        /* トリミングしない・縦横比維持・自動調整 */
+        .slides img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* ←トリミング防止 */
+            background: #000; /* 余白色（任意で変更可） */
+        }
+
+        /* 横スライドアニメーション */
+        @keyframes slide {
+            0%   { transform: translateX(0%); }
+            20%  { transform: translateX(0%); }
+
+            25%  { transform: translateX(-100%); }
+            45%  { transform: translateX(-100%); }
+
+            50%  { transform: translateX(-200%); }
+            70%  { transform: translateX(-200%); }
+
+            75%  { transform: translateX(-300%); }
+            95%  { transform: translateX(-300%); }
+
+            100% { transform: translateX(0%); }
+        }
+
+        /* Hero テキストをスライドの上に重ねる */
+        .hero-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+
+        .hero-text h1 {
             font-size: 3rem;
             margin: 0;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        .hero p {
+        .hero-text p {
             font-size: 1.3rem;
             margin-top: 1rem;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
+        a.button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2c7a7b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        /* 共通セクション */
         .section {
             padding: 80px 10%;
         }
@@ -57,54 +109,37 @@
         }
 
         .footer {
-            background:#222;
+            background: #222;
             color: #fff;
             text-align: center;
             padding: 20px;
-        }
-
-        a.button {
-            display: inline-block;
-            padding: 12px 24px;
-            background:#2c7a7b;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Hero -->
+    <!-- ============================
+         Hero（スライドショー）
+    ============================ -->
     <section class="hero">
 
-	<div id="slider" style="width:100%; overflow:hidden; position:relative;">
-        <img id="slideImage" 
-             src="/-organization-.github.io/assets/slide/1.jpg" 
-             style="width:100%; display:block;">
-    </div>
+        <div class="slider">
+            <div class="slides">
+                <img src="/-organization-.github.io/assets/slide/1.jpg">
+                <img src="/-organization-.github.io/assets/slide/2.jpg">
+                <img src="/-organization-.github.io/assets/slide/3.jpg">
+                <img src="/-organization-.github.io/assets/slide/4.jpg">
+		<img src="/-organization-.github.io/assets/slide/5.jpg">
+            </div>
+        </div>
 
-    <script>
-        const totalImages = 5; // ← 枚数を指定
-        const basePath = "/-organization-.github.io/assets/slide/";
-        const extension = ".jpg";
-        let current = 1;
+        <div class="hero-text">
+            <h1>地域資源を未来へつなぐ</h1>
+            <p>遊休施設・空き家・民泊の新しい管理モデル</p>
+            <a href="#contact" class="button">お問い合わせ</a>
+        </div>
 
-        function changeSlide() {
-            current++;
-            if (current > totalImages) current = 1;
-            document.getElementById("slideImage").src = 
-                basePath + current + extension;
-        }
-
-        setInterval(changeSlide, 3000);
-    </script>
-
-        <h1>地域資源を未来へつなぐ</h1>
-        <p>遊休施設・空き家・民泊の新しい管理モデル</p>
-        <a href="#contact" class="button">お問い合わせ</a>
     </section>
 
     <!-- Philosophy -->
